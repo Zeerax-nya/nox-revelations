@@ -1,0 +1,1380 @@
+
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NOX REVELATIONS</title>
+  <meta name="description" content="NOX REVELATIONS — приглашение. 11 апреля 2026, 17:30. KROV, ул. Самокатная 4 стр. 32" />
+
+  <style>
+    :root{
+      --bg:#05040a;
+      --bg2:#090714;
+      --ink:#eee8ff;
+      --muted:#b8afcf;
+      --line: rgba(238,232,255,.14);
+
+      --gold:#d6b35a;
+      --gold2:#a87d16;
+
+      --accent:#b0002a;
+      --violet:#7c2cff;
+
+      --card: rgba(16,12,22,.72);
+      --shadow: rgba(0,0,0,.65);
+
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.72), rgba(0,0,0,.86)),
+        url("assets/cover.png") center top / cover no-repeat fixed,
+        radial-gradient(1200px 900px at 15% 10%, rgba(124,44,255,.10), transparent 60%),
+        radial-gradient(900px 800px at 85% 25%, rgba(176,0,42,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      overflow-x:hidden;
+    }
+
+
+    /* Fog + Grain */
+    .fog{
+      position:fixed; inset:-20%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.06), transparent 55%),
+        radial-gradient(circle at 70% 50%, rgba(255,255,255,.05), transparent 60%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,.04), transparent 60%);
+      filter: blur(18px);
+      animation: drift 18s ease-in-out infinite alternate;
+      pointer-events:none;
+      mix-blend-mode: screen;
+      opacity:.45;
+      z-index: 0;
+    }
+    @keyframes drift{
+      from{ transform: translate3d(-2%, -1%, 0) scale(1.02); }
+      to{ transform: translate3d(2%, 1%, 0) scale(1.06); }
+    }
+    .grain{
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+      opacity:.22;
+      mix-blend-mode: overlay;
+      z-index: 0;
+    }
+
+    /* layout */
+    .wrap{
+      width:min(1100px, 92vw);
+      margin:0 auto;
+      position:relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 54px 0 28px;
+      overflow:hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.36), rgba(0,0,0,.56));
+      z-index: 0;
+    }
+
+    .heroGlow{
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(800px 420px at 50% 20%, rgba(214,179,90,.16), transparent 60%),
+        radial-gradient(900px 520px at 10% 30%, rgba(124,44,255,.12), transparent 62%),
+        radial-gradient(900px 520px at 90% 30%, rgba(176,0,42,.10), transparent 65%);
+      pointer-events:none;
+      z-index: 0;
+    }
+
+    .heroCard{
+      text-align:center;
+      padding: 26px 18px 22px;
+      border: 1px solid rgba(238,232,255,.16);
+      border-radius: 22px;
+      background: rgba(10,8,16,.62);
+      box-shadow: 0 26px 70px rgba(0,0,0,.72);
+      backdrop-filter: blur(6px);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid rgba(238,232,255,.16);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(184,175,207,.95);
+      width: fit-content;
+      margin: 0 auto 14px;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background: radial-gradient(circle, var(--gold), rgba(214,179,90,.25));
+      box-shadow: 0 0 18px rgba(214,179,90,.45);
+    }
+
+    .logo{
+      /* width: 210px; */
+      /* max-width: 64vw; */
+      width: 420px;
+      max-width: 128vw;
+      /* height:auto; */
+      height:420px;
+      display:block;
+      margin: 0 auto 14px;
+      filter: drop-shadow(0 18px 46px rgba(0,0,0,.6));
+    }
+
+    h1{
+      margin: 6px 0 10px;
+      font-size: clamp(36px, 5.2vw, 62px);
+      line-height: 1.03;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(214,179,90,.96);
+      text-shadow: 0 18px 60px rgba(0,0,0,.85);
+    }
+
+    .lead{
+      margin: 0 auto 10px;
+      max-width: 62ch;
+      font-size: clamp(15px, 1.7vw, 18px);
+      line-height: 1.7;
+      color: rgba(238,232,255,.92);
+    }
+
+    .lead strong{ color: rgba(214,179,90,.95); font-weight:700; }
+
+    .sublead{
+      margin: 0 auto 18px;
+      max-width: 70ch;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(184,175,207,.92);
+    }
+
+    .metaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top: 10px;
+    }
+    .chip{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(238,232,255,.14);
+      background: rgba(0,0,0,.20);
+      color: rgba(184,175,207,.95);
+      font-size: 13px;
+      letter-spacing: .02em;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .chip b{ color: rgba(238,232,255,.94); font-weight:700; }
+    .chip .g{ color: rgba(214,179,90,.98); }
+
+    /* Countdown */
+    .countdown{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(90px, 1fr));
+      gap: 10px;
+      max-width: 520px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    @media (max-width:520px){
+      .countdown{ grid-template-columns: repeat(2, 1fr); }
+    }
+    .cd{
+      border:1px solid rgba(238,232,255,.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 10px 8px;
+      box-shadow: 0 18px 46px rgba(0,0,0,.55);
+    }
+    .cdNum{
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      font-size: 26px;
+      color: rgba(238,232,255,.96);
+      text-shadow: 0 0 22px rgba(124,44,255,.12);
+    }
+    .cdLbl{
+      margin-top:4px;
+      font-size: 12px;
+      color: rgba(184,175,207,.88);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+    }
+    .cdNote{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(184,175,207,.78);
+      letter-spacing:.06em;
+      text-transform: uppercase;
+    }
+
+    /* Buttons */
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top: 16px;
+    }
+    .btn{
+      appearance:none;
+      border:1px solid rgba(238,232,255,.16);
+      background: rgba(255,255,255,.04);
+      color: rgba(238,232,255,.95);
+      padding: 11px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease, opacity .12s ease;
+      box-shadow: 0 14px 34px rgba(0,0,0,.5);
+      font-weight:700;
+      letter-spacing:.02em;
+      text-decoration:none;
+    }
+    .btn:hover{
+      text-decoration: underline;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(214,179,90,.35);
+      background: rgba(214,179,90,.06);
+    }
+    .btn.primary{
+      border-color: rgba(214,179,90,.45);
+      background: linear-gradient(180deg, rgba(214,179,90,.18), rgba(214,179,90,.06));
+    }
+
+    /* Sections */
+    main{ padding: 28px 0 70px; }
+    section.block{ padding: 18px 0; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: 18px;
+      box-shadow: 0 18px 46px rgba(0,0,0,.62);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:after{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(500px 260px at 20% 0%, rgba(214,179,90,.10), transparent 60%),
+        radial-gradient(560px 320px at 100% 0%, rgba(124,44,255,.10), transparent 65%);
+      pointer-events:none;
+      opacity:.55;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    .h2{
+      margin:0 0 10px;
+      font-size: 22px;
+      letter-spacing:.04em;
+      text-transform: uppercase;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(214,179,90,.92);
+    }
+    .icon{
+      display:none;
+    }
+
+    .p{
+      margin: 0 0 10px;
+      color: rgba(184,175,207,.94);
+      line-height: 1.75;
+    }
+
+    /* Program list */
+    .list{
+      margin: 12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .item{
+      padding: 12px;
+      border:1px solid rgba(238,232,255,.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      display:grid;
+      grid-template-columns: 180px 1fr;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    @media (max-width:520px){
+      .item{ grid-template-columns: 1fr; }
+    }
+    .time{
+      color: rgba(214,179,90,.95);
+      font-weight: 800;
+      letter-spacing: .08em;
+      font-variant-numeric: tabular-nums;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .desc{
+      color: rgba(184,175,207,.94);
+      line-height: 1.55;
+    }
+    .desc b{ color: rgba(238,232,255,.95); }
+
+    /* Dresscode */
+    .pills{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(238,232,255,.14);
+      background: rgba(0,0,0,.18);
+      color: rgba(184,175,207,.95);
+      font-size: 13px;
+    }
+    .pill strong{ color: rgba(238,232,255,.96); font-weight:700; }
+
+    .gallery{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    @media (max-width:900px){ .gallery{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:520px){ .gallery{ grid-template-columns: 1fr; } }
+
+    .ph{
+      position:relative;
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(238,232,255,.12);
+      background: rgba(255,255,255,.02);
+      aspect-ratio: 3 / 4;
+      cursor:pointer;
+    }
+    .ph img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(.95) contrast(1.05);
+      transform: scale(1.01);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .ph:hover img{
+      transform: scale(1.06);
+      filter: saturate(1) contrast(1.08);
+    }
+    .ph:after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,.82);
+      z-index: 50;
+      padding: 18px;
+    }
+    .modal.show{ display:flex; }
+    .modalInner{
+      width: min(920px, 96vw);
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(238,232,255,.16);
+      background: rgba(10,8,16,.85);
+      box-shadow: 0 30px 90px rgba(0,0,0,.75);
+      position:relative;
+    }
+    .modalInner img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .modalClose{
+      position:absolute;
+      top:10px; right:10px;
+      border:1px solid rgba(238,232,255,.18);
+      background: rgba(0,0,0,.45);
+      color: rgba(238,232,255,.95);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    /* Rules */
+    .rules{
+      display:grid;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .rule{
+      padding: 12px;
+      border-radius: 16px;
+      border:1px solid rgba(238,232,255,.14);
+      background: rgba(255,255,255,.03);
+      color: rgba(184,175,207,.95);
+      line-height: 1.6;
+    }
+    .rule b{ color: rgba(238,232,255,.95); }
+
+    /* Gifts */
+    .linkBox{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px dashed rgba(214,179,90,.38);
+      background: rgba(214,179,90,.06);
+      color: rgba(184,175,207,.95);
+      line-height: 1.6;
+    }
+    .linkBox a{
+      color: rgba(214,179,90,.95);
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .linkBox a:hover{ text-decoration: underline; }
+
+    /* Divider line */
+    .divider{
+      height:1px;
+      background: rgba(238,232,255,.10);
+      margin: 14px 0 0;
+    }
+
+    footer{
+      border-top: 1px solid rgba(238,232,255,.12);
+      padding: 22px 0 40px;
+      color: rgba(184,175,207,.78);
+      text-align:center;
+    }
+        /* ===== Music Gate ===== */
+    .musicGate{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(900px 700px at 30% 15%, rgba(124,44,255,.16), transparent 60%),
+        radial-gradient(900px 700px at 70% 20%, rgba(176,0,42,.14), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.80), rgba(0,0,0,.92));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 16px;
+      z-index: 999;
+    }
+
+    .musicGate.hidden{ display:none; }
+
+    .musicGateCard{
+      width:min(720px, 92vw);
+      border:1px solid rgba(238,232,255,.16);
+      border-radius: 22px;
+      background: rgba(16,12,22,.78);
+      box-shadow: 0 26px 70px rgba(0,0,0,.75);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+      text-align:center;
+    }
+
+    .musicGateCard:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(520px 220px at 15% 10%, rgba(214,179,90,.12), transparent 60%),
+        radial-gradient(520px 260px at 90% 20%, rgba(124,44,255,.16), transparent 60%);
+      opacity:.7;
+      pointer-events:none;
+    }
+    .musicGateCard > *{ position:relative; z-index:1; }
+
+    .gateTitle{
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing:.01em;
+      color: rgba(214,179,90,.95);
+      text-transform: uppercase;
+    }
+    .gateText{
+      margin: 0 0 14px;
+      color: rgba(184,175,207,.92);
+      line-height: 1.6;
+    }
+    .gateRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+    }
+    .gateHint{
+      margin: 12px auto 0;
+      color: rgba(184,175,207,.78);
+      font-size: 12px;
+      line-height: 1.5;
+      max-width: 60ch;
+    }
+    /* ===== Candle cursor ===== */
+    .candle{
+      position: fixed;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      z-index: 9999;
+      opacity: .92;
+
+      background: radial-gradient(circle,
+        rgba(214,179,90,.95) 0%,
+        rgba(214,179,90,.35) 42%,
+        rgba(214,179,90,.10) 60%,
+        transparent 72%
+      );
+
+      box-shadow:
+        0 0 28px rgba(214,179,90,.22),
+        0 0 80px rgba(214,179,90,.10);
+
+      mix-blend-mode: screen;
+      filter: blur(.2px);
+    }
+
+    /* На телефонах (без мыши) можно скрыть */
+    @media (pointer: coarse){
+      .candle{ display:none; }
+    }
+
+    .tarotGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap:24px;
+      row-gap:60px;
+      margin-top:24px;
+      justify-items:center;
+      align-items:start;
+    }
+
+    .tarotCard{
+      height:130px;
+      aspect-ratio: 3 / 2;
+      border-radius:14px;
+      border:1px solid rgba(214,179,90,.4);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      background:rgba(0,0,0,.35);
+      transition:.3s;
+      margin-bottom:12px;
+    }
+
+    .tarotCard:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 40px rgba(214,179,90,.25);
+    }
+
+    @media (max-width:600px){
+
+    .logo{
+    width:260px;
+    height:auto;
+    }
+
+    .heroCard{
+    padding:18px;
+    }
+
+    h1{
+    font-size:34px;
+    }
+
+    .lead{
+    font-size:16px;
+    }
+
+    .sublead{
+    font-size:14px;
+    }
+
+    .countdown{
+    gap:8px;
+    }
+
+    }
+
+    /* ===== Scroll reveal animation ===== */
+    .reveal{
+    opacity:0;
+    transform:translateY(52px) scale(.985);
+    filter:blur(6px);
+    transition:
+      opacity 1.25s ease,
+      transform 1.25s cubic-bezier(.16,1,.3,1),
+      filter 1.25s ease;
+      will-change: opacity, transform, filter;
+    }
+
+    .reveal.visible{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+    }
+
+    /* TAROT */
+    @media (max-width:700px){
+      .tarotGrid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap:16px;
+        row-gap:24px;
+      }
+
+      .tarotCard{
+        width:100%;
+        max-width:140px;
+        height:140px;
+        margin:0 auto;
+      }
+    }
+
+    .tarotInner{
+    position:relative;
+    width:100%;
+    height:150px;
+    transition:transform .6s;
+    transform-style:preserve-3d;
+    }
+
+    .tarotCard.open .tarotInner{
+    transform:rotateY(180deg);
+    }
+
+    .tarotFront,
+    .tarotBack{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:14px;
+    backface-visibility:hidden;
+    border:1px solid rgba(214,179,90,.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:12px;
+    font-size:14px;
+    overflow:hidden;
+    }
+
+    .tarotFront{
+      background:none;
+      overflow:hidden;
+    }
+
+    .tarotFront::before{
+      content:"";
+      position:absolute;
+      inset:-90%;
+      background:url("assets/taro_back.png") center/cover no-repeat;
+      transform:rotate(0deg) scale(.85);
+      transform-origin:center;
+    }
+
+    .tarotBack{
+    background:rgba(10,8,16,.95);
+    color:#eee8ff;
+    transform:rotateY(180deg);
+    }
+
+    .wishlistNote{
+      margin-top:8px;
+      font-size:14px;
+      opacity:.75;
+      font-style:italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fog" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="candle" id="candle" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="heroGlow" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="heroCard">
+        <div class="badge"><span class="dot"></span> Приглашение • Ночь откровений</div>
+
+        <!-- ЛОГО: положи файл assets/logo.png -->
+        <img class="logo" src="assets/logo.png" alt="NOX REVELATIONS">
+
+        <h1>NOX REVELATIONS</h1>
+
+        <p class="lead">
+          Есть ночи, которые проходят.<br>
+          <strong>А есть те, что остаются.</strong>
+        </p>
+
+        <p class="sublead">
+          В этом году мы собираем вас не просто на день рождения.<br>
+          Мы открываем пространство тайн, символов и откровений.
+          <br><br>
+          Одна ночь, где каждый станет частью истории.
+          Когда часы пробьют <strong>18:30</strong>, завеса приподнимется.
+          И начнётся то, что невозможно повторить.
+          <br><br>
+          <strong>Nox Revelations</strong> — это про атмосферу, про глубину, про игру света и тьмы.
+          Про смех, танцы и моменты, которые останутся с нами дольше, чем эта ночь.
+          <br><br>
+          Добро пожаловать туда, где тайное становится явным.
+        </p>
+
+        <div class="metaRow" aria-label="Детали мероприятия">
+          <div class="chip"><span class="g">🗓</span> <b>11 апреля 2026</b></div>
+          <div class="chip"><span class="g">🕰</span> <b>17:30</b></div>
+          <div class="chip"><span class="g">📍</span> <b>KROV</b> • ул. Самокатная 4 стр. 32</div>
+        </div>
+
+        <!-- Таймер (Москва) -->
+        <div class="countdown" aria-label="Обратный отсчёт до начала">
+          <div class="cd"><div class="cdNum" id="cdDays">—</div><div class="cdLbl">дней</div></div>
+          <div class="cd"><div class="cdNum" id="cdHours">—</div><div class="cdLbl">часов</div></div>
+          <div class="cd"><div class="cdNum" id="cdMins">—</div><div class="cdLbl">минут</div></div>
+          <div class="cd"><div class="cdNum" id="cdSecs">—</div><div class="cdLbl">секунд</div></div>
+        </div>
+        <div class="cdNote">Отсчёт по Москве (UTC+03:00)</div>
+
+        <div class="actions">
+          <button class="btn primary" id="goProgram">К программе</button>
+          <button class="btn" id="goDress">Дресс-код</button>
+          <button class="btn" id="copyInfo">Скопировать детали</button>
+          <button class="btn" id="btnMuteSound">🔊 Музыка: ВКЛ</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <!-- DETAILS -->
+      <section class="block" id="details">
+        <div class="grid">
+          <div class="card">
+            <div class="h2"><span class="icon"></span> Место</div>
+            <p class="p">
+              <b>KROV.</b> Лофт в готическом стиле.<br>
+              <b>ул. Самокатная 4 стр. 32</b>
+            </p>
+            <p class="p">
+              Лучше приехать заранее — с <b>17:30 до 18:30</b> будет время освоиться в темноте,
+              почувствовать атмосферу и раскрыть первые тайны.
+            </p>
+            <div class="divider"></div>
+
+            <div class="actions" style="justify-content:flex-start; margin-top:12px;">
+              <a href="https://yandex.com/maps/-/CPeSqN~h"
+                target="_blank"
+                class="btn primary">
+                🗺 Как добраться
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="h2"><span class="icon"></span> Важно</div>
+            <p class="p">
+              <b>18:30</b> — ключевой момент: завеса приподнимется и начнётся то, что нельзя пропустить.
+            </p>
+            <p class="p">
+              Мы делаем вечер так, чтобы ты мог(ла) и поиграть в мистику, и много танцевать, и просто быть собой — но в ночи.
+            </p>
+            <div class="divider"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAM -->
+      <section class="block" id="program">
+        <div class="card">
+          <div class="h2"><span class="icon"></span> 🕯 Программа вечера</div>
+
+          <ul class="list">
+            <li class="item">
+              <div class="time">17:30–18:30</div>
+              <div class="desc">
+                <b>Сбор гостей. Фуршет. Интерактивные зоны.</b><br>
+                Время освоиться в темноте, почувствовать атмосферу и раскрыть первые тайны.
+              </div>
+            </li>
+            <li class="item">
+              <div class="time">18:30–21:30</div>
+              <div class="desc">
+                <b>Основная программа.</b><br>
+                Важно быть ровно к 18:30 — именно в этот момент завеса приподнимется, и начнётся то, что нельзя пропустить.
+              </div>
+            </li>
+            <li class="item">
+              <div class="time">21:30–22:30</div>
+              <div class="desc">
+                <b>Поздравления.</b><br>
+                Время слов, смыслов и откровений.
+              </div>
+            </li>
+            <li class="item">
+              <div class="time">22:30–00:00</div>
+              <div class="desc">
+                <b>Танцы. Много танцев.</b><br>
+                Когда тайны раскрыты — остаётся только прожить эту ночь до конца.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- DRESSCODE -->
+      <section class="block" id="dresscode">
+        <div class="grid">
+          <div class="card">
+            <div class="h2"><span class="icon"></span> Дресс-код</div>
+            <p class="p">
+              Готика. Викторианский шарм. Тёмный романтик.<br>
+            </p>
+
+            <div class="pills">
+              <div class="pill"><strong>Цвета:</strong> чёрный, бордо, фиолетовый, серебро</div>
+              <div class="pill"><strong>Фактуры:</strong> бархат, кожа, кружево</div>
+              <div class="pill"><strong>Акценты:</strong> цепи, кольца, камни, корсеты</div>
+            </div>
+
+            <div class="pills">
+              <div class="pill"><strong>Идеи:</strong> плащ/накидка, рубашка с жабо, тёмный макияж</div>
+              <div class="pill"><strong>Обувь:</strong> ботинки, сапоги, аккуратные туфли</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="p" style="margin-top:12px;">
+              Главное — чтобы в образе <b>чувствовалась ночь</b>.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="h2"><span class="icon"></span> Примеры для вдохновения</div>
+            <p class="p">Нажми на фото — откроется крупно.</p>
+
+            <!-- ФОТО: положи их в assets/ и при необходимости переименуй -->
+            <div class="gallery" id="gallery">
+              <div class="ph"><img src="assets/dress1.jpg" alt="Dress code 1" loading="lazy"></div>
+              <div class="ph"><img src="assets/dress2.jpg" alt="Dress code 2" loading="lazy"></div>
+              <div class="ph"><img src="assets/dress3.jpg" alt="Dress code 3" loading="lazy"></div>
+              <div class="ph"><img src="assets/dress4.jpg" alt="Dress code 4" loading="lazy"></div>
+              <div class="ph"><img src="assets/dress5.jpg" alt="Dress code 5" loading="lazy"></div>
+              <div class="ph"><img src="assets/dress6.jpg" alt="Dress code 6" loading="lazy"></div>
+              <div class="ph"><img src="assets/dress7.jpeg" alt="Dress code 7" loading="lazy"></div>
+              <div class="ph"><img src="assets/dress8.jpg" alt="Dress code 8" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RULES -->
+      <section class="block" id="rules">
+        <div class="card">
+          <div class="h2"><span class="icon"></span> 🔮 Правила ночи</div>
+
+          <div class="rules">
+            <div class="rule">1) <b>Бар этой ночью щедрый</b> — но давайте не пытаться исследовать его полностью в первые 20 минут.</div>
+            <div class="rule">2) <b>Танцы обязательны.</b> Даже если «я просто посмотрю»</div>
+            <div class="rule">3) <b>Без политики и выяснения отношений.</b> Только мистика, лёгкость и удовольствие</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GIFTS -->
+      <section class="block" id="gifts">
+        <div class="card">
+          <div class="h2"><span class="icon"></span> ✨ Подарки</div>
+
+          <p class="p">
+            В этом году мы решили не делать полноценный вишлист.<br>
+            Мы улетаем в Тайланд и будем рады вкладу в наше большое приключение.
+          </p>
+
+          <p class="p">
+            Если совсем не хочется дарить деньги — вот несколько вещей, которые точно нас порадуют:
+          </p>
+
+          <div class="linkBox">
+          Если захочется заглянуть в наши маленькие желания ✨<br>
+
+          <a href="https://www.wishlistr.com/your-list/" 
+            target="_blank" 
+            id="wishlistLink">
+            🎁 Посмотреть вишлист
+          </a>
+
+          <div class="wishlistNote">
+            Список может время от времени пополняться новыми находками.
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <!-- PLACEHOLDERS -->
+      <section class="block" id="story">
+        <div>
+          <div class="card">
+            <div class="h2"><span class="icon"></span> История ночи</div>
+            <p class="p">
+              Мир всегда был немного больше, чем кажется.
+
+              Говорят, рядом с нами живут те, о ком мы привыкли читать только в легендах —
+              вампиры, колдуны, оракулы и оборотни.
+              Они идут рядом с людьми сквозь века,
+              скрываясь в тенях, в случайных взглядах и в историях,
+              которые принято называть вымыслом.
+
+              Иногда граница между мирами становится тоньше.
+
+              В такие ночи старые символы вспоминают своё значение,
+              интуиция звучит громче разума,
+              а судьбы переплетаются чуть сильнее, чем обычно.
+
+              Говорят, именно в такие моменты можно увидеть чуть больше,
+              чем обычно позволяет реальность.
+
+              Сегодня ночью мы лишь немного приоткроем завесу.
+              А дальше — пусть ночь расскажет свою историю.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="card">
+      <div class="h2"><span class="icon"></span> Карты ночи</div>
+
+      <p class="p">
+      Выбери карту и узнай своё предсказание на эту ночь🔮
+      </p>
+
+      <div class="tarotGrid">
+
+        <div class="tarotCard">
+          <div class="tarotInner">
+            <div class="tarotFront"></div>
+            <div class="tarotBack">Дверь откроется только тем, кто не боится сделать шаг первым</div>
+          </div>
+        </div>
+
+        <div class="tarotCard">
+          <div class="tarotInner">
+            <div class="tarotFront"></div>
+            <div class="tarotBack">Свет и тьма договорятся — и ты окажешься ровно между ними</div>
+          </div>
+        </div>
+
+        <div class="tarotCard">
+          <div class="tarotInner">
+            <div class="tarotFront"></div>
+            <div class="tarotBack">Сегодня стоит довериться интуиции</div>
+          </div>
+        </div>
+
+        <div class="tarotCard">
+          <div class="tarotInner">
+            <div class="tarotFront"></div>
+            <div class="tarotBack">Этой ночью случайностей не будет. Только красиво замаскированные знаки</div>
+          </div>
+        </div>
+
+        <div class="tarotCard">
+          <div class="tarotInner">
+            <div class="tarotFront"></div>
+            <div class="tarotBack">Тень приведёт тебя туда, где начнётся одна из самых важных сцен вечера</div>
+          </div>
+        </div>
+
+        <div class="tarotCard">
+          <div class="tarotInner">
+            <div class="tarotFront"></div>
+            <div class="tarotBack">Ты окажешься там, где должен быть</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+      <small>NOX REVELATIONS • KROV • ул. Самокатная 4 стр. 32 • 11.04.2026 • 17:30</small>
+    </div>
+  </footer>
+
+  <!-- Modal for gallery -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalInner" role="dialog" aria-label="Просмотр изображения">
+      <button class="modalClose" id="modalClose" aria-label="Закрыть">✕</button>
+      <img id="modalImg" src="" alt="">
+    </div>
+  </div>
+
+  <!-- Music Gate (нужен клик для запуска звука) -->
+  <div class="musicGate" id="musicGate" aria-hidden="false">
+    <div class="musicGateCard">
+      <div class="badge" style="margin:0 auto 12px;"><span class="dot"></span> Вход в ночь</div>
+      <h2 class="gateTitle">Нажми, чтобы войти и включить эмбиент</h2>
+      <p class="gateText">
+        Браузер блокирует автозвук — поэтому музыка начнётся с первого клика.
+        После входа можно выключить/включить в один тап.
+      </p>
+      <div class="gateRow">
+        <button class="btn primary" id="btnEnterSound">Войти со свечой 🕯️</button>
+      </div>
+      <p class="gateHint">Если ты в наушниках — убавь громкость: жеский эмбиент.</p>
+    </div>
+  </div>
+
+  <script>
+    // ===== Smooth scroll buttons
+    const goProgram = document.getElementById('goProgram');
+    const goDress = document.getElementById('goDress');
+    goProgram.addEventListener('click', () => document.getElementById('program').scrollIntoView({behavior:'smooth'}));
+    goDress.addEventListener('click', () => document.getElementById('dresscode').scrollIntoView({behavior:'smooth'}));
+
+    // ===== Copy info
+    document.getElementById('copyInfo').addEventListener('click', async () => {
+      const text =
+      `NOX REVELATIONS
+      Дата: 11 апреля 2026
+      Время: 17:30
+      Место: KROV — ул. Самокатная 4 стр. 32
+      Важно: начало ключевого момента — 18:30`;
+      try{
+        await navigator.clipboard.writeText(text);
+        flash('Скопировано ✔');
+      }catch(e){
+        alert('Не удалось скопировать. Вот текст:\n\n' + text);
+      }
+    });
+
+    function flash(msg){
+      const btn = document.getElementById('copyInfo');
+      const old = btn.textContent;
+      btn.textContent = msg;
+      setTimeout(()=> btn.textContent = old, 1200);
+    }
+
+    // ===== Countdown (Moscow)
+    // Москва: UTC+03:00. Ставим явное смещение, чтобы не зависеть от часовых поясов пользователя.
+    const target = new Date('2026-04-11T17:30:00+03:00').getTime();
+
+    const cdDays = document.getElementById('cdDays');
+    const cdHours = document.getElementById('cdHours');
+    const cdMins = document.getElementById('cdMins');
+    const cdSecs = document.getElementById('cdSecs');
+
+    function pad2(n){ return String(n).padStart(2,'0'); }
+
+    function tick(){
+      const now = Date.now();
+      let diff = target - now;
+
+      if(diff <= 0){
+        cdDays.textContent = '0';
+        cdHours.textContent = '00';
+        cdMins.textContent = '00';
+        cdSecs.textContent = '00';
+        return;
+      }
+
+      const s = Math.floor(diff/1000);
+      const days = Math.floor(s / 86400);
+      const hours = Math.floor((s % 86400) / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      const secs = s % 60;
+
+      cdDays.textContent = String(days);
+      cdHours.textContent = pad2(hours);
+      cdMins.textContent = pad2(mins);
+      cdSecs.textContent = pad2(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ===== Gallery modal
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+
+    document.getElementById('gallery').addEventListener('click', (e) => {
+      const img = e.target.closest('img');
+      if(!img) return;
+      modalImg.src = img.src;
+      modalImg.alt = img.alt || 'Dress code';
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+
+    function closeModal(){
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImg.src = '';
+    }
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal) closeModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeModal();
+    });
+    // ===== Gothic Ambient Music (WebAudio) =====
+    const musicGate = document.getElementById('musicGate');
+    const btnEnterSound = document.getElementById('btnEnterSound');
+    const btnMuteSound = document.getElementById('btnMuteSound');
+
+    let audioCtx = null;
+    let master = null;
+    let isPlaying = false;
+    let startedOnce = false;
+
+    function createAmbient(ctx){
+      master = ctx.createGain();
+      master.gain.value = 0.0; // fade in
+      master.connect(ctx.destination);
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 1400;
+      filter.Q.value = 0.7;
+      filter.connect(master);
+
+      function voice(freq, detuneCents, gainVal){
+        const osc = ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+        osc.detune.value = detuneCents;
+
+        const g = ctx.createGain();
+        g.gain.value = gainVal;
+
+        osc.connect(g);
+        g.connect(filter);
+        osc.start();
+        return {osc, g};
+      }
+
+      // Dm-ish pad: D–F–A + octave
+      voice(196.00, -4, 0.018);
+      voice(246.94, +3, 0.014);
+      voice(293.66, -2, 0.012);
+      voice(392.00, +4, 0.008);
+
+      // Wind noise
+      const noise = ctx.createBufferSource();
+      const bufferSize = ctx.sampleRate * 2;
+      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.25;
+      noise.buffer = noiseBuffer;
+      noise.loop = true;
+
+      const noiseFilter = ctx.createBiquadFilter();
+      noiseFilter.type = 'bandpass';
+      noiseFilter.frequency.value = 320;
+      noiseFilter.Q.value = 0.8;
+
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.value = 0.006;
+
+      noise.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(filter);
+      noise.start();
+
+      // Slow filter breathing
+      const lfo = ctx.createOscillator();
+      lfo.type = 'sine';
+      lfo.frequency.value = 0.06;
+
+      const lfoGain = ctx.createGain();
+      lfoGain.gain.value = 220;
+
+      lfo.connect(lfoGain);
+      lfoGain.connect(filter.frequency);
+      lfo.start();
+
+      // Tiny master pulse
+    //   const lfo2 = ctx.createOscillator();
+    //   lfo2.type = 'sine';
+    //   lfo2.frequency.value = 0.035;
+
+    //   const lfo2Gain = ctx.createGain();
+    //   lfo2Gain.gain.value = 0.03;
+
+    //   lfo2.connect(lfo2Gain);
+    //   lfo2Gain.connect(master.gain);
+    //   lfo2.start();
+    }
+
+    function fadeMaster(to, seconds=0.9){
+      const t = audioCtx.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(master.gain.value, t);
+      master.gain.linearRampToValueAtTime(to, t + seconds);
+    }
+
+    async function startMusic(){
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if(audioCtx.state === 'suspended') await audioCtx.resume();
+
+      if(!master){
+        createAmbient(audioCtx);
+      }
+      isPlaying = true;
+      startedOnce = true;
+
+      if (btnMuteSound) {
+      btnMuteSound.disabled = false;
+      btnMuteSound.textContent = '🔊 Музыка: ВКЛ';
+    }
+      fadeMaster(0.22, 2.5);
+    }
+
+    function stopMusic(){
+      if(!audioCtx || !master) return;
+      isPlaying = false;
+      if (btnMuteSound) {
+       btnMuteSound.textContent = '🔇 Музыка: ВЫКЛ';
+      }
+      fadeMaster(0.0, 0.6);
+    }
+
+    btnEnterSound.addEventListener('click', async () => {
+      musicGate.classList.add('hidden');
+      await startMusic();
+    });
+
+    // если ворота закрыты, но аудио “уснуло” — попробуем resume по клику
+    document.addEventListener('click', async () => {
+      if(musicGate.classList.contains('hidden') && audioCtx && audioCtx.state === 'suspended'){
+        try{ await audioCtx.resume(); }catch(e){}
+      }
+    }, {passive:true});
+    // ===== Candle cursor move =====
+    const candle = document.getElementById('candle');
+
+    window.addEventListener('mousemove', (e) => {
+      candle.style.left = e.clientX + 'px';
+
+      candle.style.top  = e.clientY + 'px';
+    });
+
+    // чтобы не “висела” в центре до первого движения
+    window.addEventListener('mouseleave', () => candle.style.opacity = '0');
+    window.addEventListener('mouseenter', () => candle.style.opacity = '.92');
+
+    // ===== Scroll reveal =====
+
+    const revealElements = document.querySelectorAll("section.block");
+
+    revealElements.forEach(el => {
+      el.classList.add("reveal");
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+        }
+      });
+    },{
+      threshold:0.15
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+    if (btnMuteSound) {
+    btnMuteSound.addEventListener('click', async () => {
+      if (!startedOnce) {
+        await startMusic();
+        btnMuteSound.textContent = '🔊 Музыка: ВКЛ';
+        return;
+      }
+
+      if (isPlaying) {
+        stopMusic();
+        btnMuteSound.textContent = '🔇 Музыка: ВЫКЛ';
+      } else {
+        await startMusic();
+        btnMuteSound.textContent = '🔊 Музыка: ВКЛ';
+      }
+    });
+  }
+
+  // TAROT CARDS
+  const tarotCards = document.querySelectorAll(".tarotCard");
+  tarotCards.forEach(card=>{
+    card.addEventListener("click", ()=>{
+      card.classList.toggle("open");
+    });
+  });
+
+  </script>
+</body>
+</html>
